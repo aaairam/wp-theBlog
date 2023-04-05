@@ -18,7 +18,6 @@
                         'post_type' => 'blogPost',
                         'posts_per_page'   => 1,
                     );
-
                     $newQuery = new WP_Query($args)
             ?>
 
@@ -120,11 +119,7 @@
                
               </ul>
               <h3><?php the_title() ?></h3>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Corporis voluptates debitis qui praesentium hic deleniti eos
-                sequi adipisci accusamus dolorem.
-              </p>
+              <p><?php echo get_the_excerpt() ?></p>
               <a href="#">Read More...</a>
               
             </div>
@@ -170,7 +165,8 @@ wp_reset_postdata();
           <?php 
                     $args = array(
                         'post_type' => 'FeaturePost',
-                        'post_per_page'   => -1,
+                        'posts_per_page'   => 3,
+                        
                         
                     );
 
@@ -182,18 +178,13 @@ wp_reset_postdata();
             <article class="card__lg">
             <?php echo get_the_post_thumbnail() ?>
               <div class="card__lg__content">
-                <small>Oct 2, 2022</small>
+                <small><?php echo get_the_date('M-d-Y') ?></small>
                 <h3>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Similique, eligendi?
+                 <?php echo the_title() ?>
                 </h3>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Alias in deserunt voluptatum ad laboriosam, aliquam quis fuga
-                  perspiciatis hic praesentium ea quae nemo aperiam aut sit
-                  recusandae ipsa? Repellendus, quos.
-                </p>
-                <a href="#">Read More...</a>
+                
+                <p><?php echo get_the_excerpt() ?></p>
+                <a href="<?php echo the_permalink(); ?>">Read More ...</a>
               </div>
             </article>
             <?php
@@ -209,58 +200,31 @@ wp_reset_postdata();
 
           </div>
           <div class="feature__sidebar">
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+          <?php 
+                    $args = array(
+                        'post_type' => 'FeaturePost',
+                        'post_per_page'   => 6,
+                        'offset'    =>3,
+                    );
 
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+                    $newQuery = new WP_Query($args)
+            ?>
 
+            <?php if($newQuery->have_posts()) : while($newQuery->have_posts()) : $newQuery->the_post(); ?>
             <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
+              <small><?php echo get_the_date('M-d-Y') ?></small>
+              <h4><?php echo the_title() ?></h4>
+              <a href="<?php echo the_permalink() ?>">Read More ...</a>
             </div>
+            <?php
 
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
-
-            <div class="card__mini">
-              <small>Oct 21, 2022</small>
-              <h4>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
-                sit.
-              </h4>
-              <a href="#">Read More ...</a>
-            </div>
+            endwhile;
+            else:
+            echo"no available content";
+            endif;
+            wp_reset_postdata();
+            ?>
+             
           </div>
         </div>
       </div>

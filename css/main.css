@@ -307,6 +307,7 @@
     opacity: 0.8;
     font-weight: bold;
     font-size: 1.4rem;
+    color: white;
   }
   
   .card__mini {
@@ -322,6 +323,7 @@
     font-size: 1.4rem;
     opacity: 0.8;
     font-weight: bold;
+    color: var(--light);
   }
   
   .footer {
@@ -546,4 +548,29 @@
   .fa-sun:before {
     content: "\f185";
   }
+
+  .theContent{
+   display:flex;
+   text-align:left;
+   background-color: #ffecd1;
+   color:white;
+   height: 140vh;
+  }
+
+  .theContent .title h1{
+    color: #48323c;
+    text-align: left;  
+  }
   
+  .theContent img{
+    width: 40rem;
+    padding:2rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+
+  .theContent .date{
+    margin-bottom:5rem;
+    width: 70%;
+    color: #141413;
+    font-size: 2rem;
+  }
